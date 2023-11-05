@@ -1,0 +1,23 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        # user
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/login
+            - Method=POST
+
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka
